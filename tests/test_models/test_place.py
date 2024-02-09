@@ -131,27 +131,27 @@ class TestPlace_instantiation(unittest.TestCase):
 
     def test_str_representation(self):
         myDate = datetime.today()
-        myDateRepr = repr(my_date)
+        myDateRepr = repr(myDate)
         myPlace = Place()
         myPlace.id = "444444"
         myPlace.created_at = myPlace.updated_at = myDate
         myPlaceStr = myPlace.__str__()
-        self.assertIn("[Place] (777777)", myPlaceStr)
-        self.assertIn("'id': '777777'", my_place_str)
-        self.assertIn("'created_at': " + my_date_repr, my_place_str)
-        self.assertIn("'updated_at': " + my_date_repr, my_place_str)
+        self.assertIn("[Place] (444444)", myPlaceStr)
+        self.assertIn("'id': '444444'", myPlaceStr)
+        self.assertIn("'created_at': " + myDateRepr, myPlaceStr)
+        self.assertIn("'updated_at': " + myDateRepr, myPlaceStr)
 
     def test_args_unused(self):
-        my_place = Place(None)
-        self.assertNotIn(None, my_place.__dict__.values())
+        myPlace = Place(None)
+        self.assertNotIn(None, myPlace.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
-        my_date = datetime.today()
-        my_date_iso = my_date.isoformat()
-        my_place = Place(id="777", created_at=my_date_iso, updated_at=my_date_iso)
-        self.assertEqual(my_place.id, "777")
-        self.assertEqual(my_place.created_at, my_date)
-        self.assertEqual(my_place.updated_at, my_date)
+        myDate = datetime.today()
+        myDateIso = myDate.isoformat()
+        myPlace = Place(id="444", created_at=myDateIso, updated_at=myDateIsoo)
+        self.assertEqual(myPlace.id, "777")
+        self.assertEqual(myPlace.created_at, myDate)
+        self.assertEqual(myPlace.updated_at, myDate)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -180,34 +180,34 @@ class TestPlace_save(unittest.TestCase):
             pass
 
     def test_one_save(self):
-        my_place = Place()
+        myPlace = Place()
         sleep(0.05)
-        first_updated_at = my_place.updated_at
+        first_updated_at = myPlace.updated_at
         my_place.save()
-        self.assertLess(first_updated_at, my_place.updated_at)
+        self.assertLess(first_updated_at, myPlace.updated_at)
 
     def test_two_saves(self):
-        my_place = Place()
+        myPlace = Place()
         sleep(0.05)
-        first_updated_at = my_place.updated_at
-        my_place.save()
-        second_updated_at = my_place.updated_at
+        first_updated_at = myPlace.updated_at
+        myPlace.save()
+        second_updated_at = myPlace.updated_at
         self.assertLess(first_updated_at, second_updated_at)
         sleep(0.05)
-        my_place.save()
-        self.assertLess(second_updated_at, my_place.updated_at)
+        myPlace.save()
+        self.assertLess(second_updated_at, myPlace.updated_at)
 
     def test_save_with_arg(self):
-        my_place = Place()
+        myPlace = Place()
         with self.assertRaises(TypeError):
-            my_place.save(None)
+            myPlace.save(None)
 
     def test_save_updates_file(self):
-        my_place = Place()
-        my_place.save()
-        my_place_id = "Place." + my_place.id
+        myPlace = Place()
+        myPlace.save()
+        myPlaceId = "Place." + myPlace.id
         with open("file.json", "r") as f:
-            self.assertIn(my_place_id, f.read())
+            self.assertIn(myPlaceId, f.read())
 
 
 class TestPlace_to_dict(unittest.TestCase):
@@ -235,47 +235,47 @@ class TestPlace_to_dict(unittest.TestCase):
         self.assertTrue(dict, type(Place().to_dict()))
 
     def test_to_dict_contains_correct_keys(self):
-        my_place = Place()
-        self.assertIn("id", my_place.to_dict())
-        self.assertIn("created_at", my_place.to_dict())
-        self.assertIn("updated_at", my_place.to_dict())
-        self.assertIn("__class__", my_place.to_dict())
+        myPlace = Place()
+        self.assertIn("id", myPlace.to_dict())
+        self.assertIn("created_at", myPlace.to_dict())
+        self.assertIn("updated_at", myPlace.to_dict())
+        self.assertIn("__class__", myPlace.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
-        my_place = Place()
-        my_place.middle_name = "Johnson"
-        my_place.my_number = 777
-        self.assertEqual("Johnson", my_place.middle_name)
-        self.assertIn("my_number", my_place.to_dict())
+        myPlace = Place()
+        myPlace.middle_name = "Nwaeze"
+        myPlace.my_number = 444
+        self.assertEqual("Nwaeze", myPlace.middle_name)
+        self.assertIn("my_number", myPlace.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        my_place = Place()
-        my_place_dict = my_place.to_dict()
-        self.assertEqual(str, type(my_place_dict["id"]))
-        self.assertEqual(str, type(my_place_dict["created_at"]))
-        self.assertEqual(str, type(my_place_dict["updated_at"]))
+        myPlace = Place()
+        myPlaceDict = myPlace.to_dict()
+        self.assertEqual(str, type(myPlaceDict["id"]))
+        self.assertEqual(str, type(myPlaceDict["created_at"]))
+        self.assertEqual(str, type(myPlaceDict["updated_at"]))
 
     def test_to_dict_output(self):
-        my_date = datetime.today()
-        my_place = Place()
-        my_place.id = "777777"
-        my_place.created_at = my_place.updated_at = my_date
+        myDate = datetime.today()
+        myPlace = Place()
+        myPlace.id = "777777"
+        myPlace.created_at = myPlace.updated_at = myDate
         to_dict = {
-            'id': '777777',
+            'id': '444444',
             '__class__': 'Place',
-            'created_at': my_date.isoformat(),
-            'updated_at': my_date.isoformat(),
+            'created_at': myDate.isoformat(),
+            'updated_at': myDate.isoformat(),
         }
-        self.assertDictEqual(my_place.to_dict(), to_dict)
+        self.assertDictEqual(myPlace.to_dict(), to_dict)
 
     def test_contrast_to_dict_dunder_dict(self):
-        my_place = Place()
-        self.assertNotEqual(my_place.to_dict(), my_place.__dict__)
+        myPlace = Place()
+        self.assertNotEqual(myPlace.to_dict(), myPlace.__dict__)
 
     def test_to_dict_with_arg(self):
-        my_place = Place()
+        myPlace = Place()
         with self.assertRaises(TypeError):
-            my_place.to_dict(None)
+            myPlace.to_dict(None)
 
 
 if __name__ == "__main__":
