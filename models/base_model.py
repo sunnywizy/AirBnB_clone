@@ -21,7 +21,7 @@ class BaseModel:
                     setattr(self, k, datetime.strptime(v, mtfm)
                 else:
                     setattr(self, k, v)
-            models.storage.new(self)
+        models.storage.new(self)
     
     def save(self):
         self.updated_at = datetime.utcnow()
