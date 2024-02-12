@@ -47,111 +47,111 @@ class TestPlace_instantiation(unittest.TestCase):
         self.assertEqual(datetime, type(Place().updated_at))
 
     def test_city_id_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(str, type(Place.city_id))
-        self.assertIn("city_id", dir(myPlace))
-        self.assertNotIn("city_id", myPlace.__dict__)
+        self.assertIn("city_id", dir(mpl))
+        self.assertNotIn("city_id", mpl.__dict__)
 
     def test_user_id_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(str, type(Place.user_id))
-        self.assertIn("user_id", dir(myPlace))
-        self.assertNotIn("user_id", myPlace.__dict__)
+        self.assertIn("user_id", dir(mpl))
+        self.assertNotIn("user_id", mpl.__dict__)
 
     def test_name_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(str, type(Place.name))
-        self.assertIn("name", dir(myPlace))
-        self.assertNotIn("name", myPlace.__dict__)
+        self.assertIn("name", dir(mpl))
+        self.assertNotIn("name", mpl.__dict__)
 
     def test_description_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(str, type(Place.description))
-        self.assertIn("description", dir(myPlace))
-        self.assertNotIn("desctiption", myPlace.__dict__)
+        self.assertIn("description", dir(mpl))
+        self.assertNotIn("desctiption", mpl.__dict__)
 
     def test_number_rooms_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(int, type(Place.number_rooms))
-        self.assertIn("number_rooms", dir(myPlace))
-        self.assertNotIn("number_rooms", myPlace.__dict__)
+        self.assertIn("number_rooms", dir(mpl))
+        self.assertNotIn("number_rooms", mpl.__dict__)
 
     def test_number_bathrooms_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(int, type(Place.number_bathrooms))
-        self.assertIn("number_bathrooms", dir(myPlace))
-        self.assertNotIn("number_bathrooms", myPlace.__dict__)
+        self.assertIn("number_bathrooms", dir(mpl))
+        self.assertNotIn("number_bathrooms", mpl.__dict__)
 
     def test_max_guest_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(int, type(Place.max_guest))
-        self.assertIn("max_guest", dir(myPlace))
-        self.assertNotIn("max_guest", myPlace.__dict__)
+        self.assertIn("max_guest", dir(mpl))
+        self.assertNotIn("max_guest", mpl.__dict__)
 
     def test_price_by_night_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(int, type(Place.price_by_night))
-        self.assertIn("price_by_night", dir(myPlace))
-        self.assertNotIn("price_by_night", myPlace.__dict__)
+        self.assertIn("price_by_night", dir(mpl))
+        self.assertNotIn("price_by_night", mpl.__dict__)
 
     def test_latitude_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(float, type(Place.latitude))
-        self.assertIn("latitude", dir(myPlace))
-        self.assertNotIn("latitude", myPlace.__dict__)
+        self.assertIn("latitude", dir(mpl))
+        self.assertNotIn("latitude", mpl.__dict__)
 
     def test_longitude_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(float, type(Place.longitude))
-        self.assertIn("longitude", dir(myPlace))
-        self.assertNotIn("longitude", myPlace.__dict__)
+        self.assertIn("longitude", dir(mpl))
+        self.assertNotIn("longitude", mpl.__dict__)
 
     def test_amenity_ids_is_public_class_attribute(self):
-        myPlace = Place()
+        mpl = Place()
         self.assertEqual(list, type(Place.amenity_ids))
-        self.assertIn("amenity_ids", dir(myPlace))
-        self.assertNotIn("amenity_ids", myPlace.__dict__)
+        self.assertIn("amenity_ids", dir(mpl))
+        self.assertNotIn("amenity_ids", mpl.__dict__)
 
     def test_two_places_unique_ids(self):
-        myPlace_1 = Place()
-        myPlace_2 = Place()
-        self.assertNotEqual(myPlace_1.id, myPlace_2.id)
+        mpl1 = Place()
+        mpl2 = Place()
+        self.assertNotEqual(mpl1.id, mpl2.id)
 
     def test_two_places_different_created_at(self):
-        myPlace_1 = Place()
+        mpl1 = Place()
         sleep(0.05)
-        myPlace_2 = Place()
-        self.assertLess(myPlace_1.created_at, myPlace_2.created_at)
+        mpl2 = Place()
+        self.assertLess(mpl1.created_at, mpl2.created_at)
 
     def test_two_places_different_updated_at(self):
-        myPlace_1 = Place()
+        mpl1 = Place()
         sleep(0.05)
-        myPlace_2 = Place()
-        self.assertLess(myPlace_1.updated_at, myPlace_2.updated_at)
+        mpl2 = Place()
+        self.assertLess(mpl1.updated_at, mpl2.updated_at)
 
     def test_str_representation(self):
-        myDate = datetime.today()
-        myDateRepr = repr(myDate)
-        myPlace = Place()
-        myPlace.id = "444444"
-        myPlace.created_at = myPlace.updated_at = myDate
-        myPlaceStr = myPlace.__str__()
-        self.assertIn("[Place] (444444)", myPlaceStr)
-        self.assertIn("'id': '444444'", myPlaceStr)
-        self.assertIn("'created_at': " + myDateRepr, myPlaceStr)
-        self.assertIn("'updated_at': " + myDateRepr, myPlaceStr)
+        mdt = datetime.today()
+        mdr = repr(mdt)
+        mpl = Place()
+        mpl.id = "444444"
+        mpl.created_at = mpl.updated_at = mdt
+        mpstr = mpl.__str__()
+        self.assertIn("[Place] (444444)", mpstr)
+        self.assertIn("'id': '444444'", mpstr)
+        self.assertIn("'created_at': " + mdr, mpstr)
+        self.assertIn("'updated_at': " + mdr, myPlaceStr)
 
     def test_args_unused(self):
-        myPlace = Place(None)
-        self.assertNotIn(None, myPlace.__dict__.values())
+        mpl = Place(None)
+        self.assertNotIn(None, mpl.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
-        myDate = datetime.today()
-        myDateIso = myDate.isoformat()
-        myPlace = Place(id="444", created_at=myDateIso, updated_at=myDateIsoo)
-        self.assertEqual(myPlace.id, "777")
-        self.assertEqual(myPlace.created_at, myDate)
-        self.assertEqual(myPlace.updated_at, myDate)
+        mdt = datetime.today()
+        mdiso = mdt.isoformat()
+        mpl = Place(id="444", created_at=mdiso, updated_at=mdiso)
+        self.assertEqual(mpl.id, "444")
+        self.assertEqual(mpl.created_at, mdt)
+        self.assertEqual(mpl.updated_at, mdt)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -180,34 +180,34 @@ class TestPlace_save(unittest.TestCase):
             pass
 
     def test_one_save(self):
-        myPlace = Place()
+        mpl = Place()
         sleep(0.05)
-        first_updated_at = myPlace.updated_at
-        my_place.save()
-        self.assertLess(first_updated_at, myPlace.updated_at)
+        first_updated_at = mpl.updated_at
+        mpl.save()
+        self.assertLess(first_updated_at, mpl.updated_at)
 
     def test_two_saves(self):
-        myPlace = Place()
+        mpl = Place()
         sleep(0.05)
-        first_updated_at = myPlace.updated_at
-        myPlace.save()
-        second_updated_at = myPlace.updated_at
+        first_updated_at = mpl.updated_at
+        mpl.save()
+        second_updated_at = mpl.updated_at
         self.assertLess(first_updated_at, second_updated_at)
         sleep(0.05)
-        myPlace.save()
-        self.assertLess(second_updated_at, myPlace.updated_at)
+        mpl.save()
+        self.assertLess(second_updated_at, mpl.updated_at)
 
     def test_save_with_arg(self):
-        myPlace = Place()
+        mpl = Place()
         with self.assertRaises(TypeError):
-            myPlace.save(None)
+            mpl.save(None)
 
     def test_save_updates_file(self):
-        myPlace = Place()
-        myPlace.save()
-        myPlaceId = "Place." + myPlace.id
+        mpl = Place()
+        mpl.save()
+        mplid = "Place." + mpl.id
         with open("file.json", "r") as f:
-            self.assertIn(myPlaceId, f.read())
+            self.assertIn(mplid, f.read())
 
 
 class TestPlace_to_dict(unittest.TestCase):
@@ -235,47 +235,47 @@ class TestPlace_to_dict(unittest.TestCase):
         self.assertTrue(dict, type(Place().to_dict()))
 
     def test_to_dict_contains_correct_keys(self):
-        myPlace = Place()
-        self.assertIn("id", myPlace.to_dict())
-        self.assertIn("created_at", myPlace.to_dict())
-        self.assertIn("updated_at", myPlace.to_dict())
-        self.assertIn("__class__", myPlace.to_dict())
+        mpl = Place()
+        self.assertIn("id", mpl.to_dict())
+        self.assertIn("created_at", mpl.to_dict())
+        self.assertIn("updated_at", mpl.to_dict())
+        self.assertIn("__class__", mpl.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
-        myPlace = Place()
-        myPlace.middle_name = "Nwaeze"
-        myPlace.my_number = 444
-        self.assertEqual("Nwaeze", myPlace.middle_name)
-        self.assertIn("my_number", myPlace.to_dict())
+        mpl = Place()
+        mpl.middle_name = "Nwaeze"
+        mpl.my_number = 444
+        self.assertEqual("Nwaeze", mpl.middle_name)
+        self.assertIn("my_number", mpl.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        myPlace = Place()
-        myPlaceDict = myPlace.to_dict()
-        self.assertEqual(str, type(myPlaceDict["id"]))
-        self.assertEqual(str, type(myPlaceDict["created_at"]))
-        self.assertEqual(str, type(myPlaceDict["updated_at"]))
+        mpl = Place()
+        mpldict = mpl.to_dict()
+        self.assertEqual(str, type(mpldict["id"]))
+        self.assertEqual(str, type(mpldict["created_at"]))
+        self.assertEqual(str, type(mpldict["updated_at"]))
 
     def test_to_dict_output(self):
-        myDate = datetime.today()
-        myPlace = Place()
-        myPlace.id = "777777"
-        myPlace.created_at = myPlace.updated_at = myDate
+        mdt = datetime.today()
+        mpl = Place()
+        mpl.id = "777777"
+        mpl.created_at = mpl.updated_at = mdt
         to_dict = {
             'id': '444444',
             '__class__': 'Place',
-            'created_at': myDate.isoformat(),
-            'updated_at': myDate.isoformat(),
+            'created_at': mdt.isoformat(),
+            'updated_at': mdt.isoformat(),
         }
-        self.assertDictEqual(myPlace.to_dict(), to_dict)
+        self.assertDictEqual(mpl.to_dict(), to_dict)
 
     def test_contrast_to_dict_dunder_dict(self):
-        myPlace = Place()
-        self.assertNotEqual(myPlace.to_dict(), myPlace.__dict__)
+        mpl = Place()
+        self.assertNotEqual(mpl.to_dict(), mpl.__dict__)
 
     def test_to_dict_with_arg(self):
-        myPlace = Place()
+        mpl = Place()
         with self.assertRaises(TypeError):
-            myPlace.to_dict(None)
+            mpl.to_dict(None)
 
 
 if __name__ == "__main__":

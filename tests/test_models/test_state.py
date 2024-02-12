@@ -54,28 +54,28 @@ class TestState_instantiation(unittest.TestCase):
         self.assertLess(ste_1.updated_at, ste_2.updated_at)
 
     def test_str_representation(self):
-        myDate = datetime.today()
-        myDateRepr = repr(myDate)
+        mdt = datetime.today()
+        mdr = repr(mdt)
         ste = State()
         ste.id = "444444"
-        ste.created_at = state.updated_at = my_date
+        ste.created_at = state.updated_at = mdt
         ste_str = ste.__str__()
         self.assertIn("[State] (444444)", ste_str)
         self.assertIn("'id': '444444'", ste_str)
-        self.assertIn("'created_at': " + myDateRepr, ste_str)
-        self.assertIn("'updated_at': " + myDateRepr, ste_str)
+        self.assertIn("'created_at': " + mdr, ste_str)
+        self.assertIn("'updated_at': " + mdr, ste_str)
 
     def test_args_unused(self):
         ste = State(None)
         self.assertNotIn(None, ste.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
-        myDate = datetime.today()
-        myDateIso = myDate.isoformat()
-        ste = State(id="345", created_at=myDateIso, updated_at=myDateIso)
+        mdt = datetime.today()
+        mdiso = mdt.isoformat()
+        ste = State(id="345", created_at=mdiso, updated_at=mdiso)
         self.assertEqual(ste.id, "345")
-        self.assertEqual(ste.created_at, myDate)
-        self.assertEqual(ste.updated_at, myDate)
+        self.assertEqual(ste.created_at, mdt)
+        self.assertEqual(ste.updated_at, mdt)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -165,15 +165,15 @@ class TestState_to_dict(unittest.TestCase):
         self.assertEqual(str, type(ste_dict["updated_at"]))
 
     def test_to_dict_output(self):
-        myDate = datetime.today()
+        mdt = datetime.today()
         ste = State()
         ste.id = "444444"
-        ste.created_at = ste.updated_at = myDate
+        ste.created_at = ste.updated_at = mdt
         tdict = {
             'id': '444444',
             '__class__': 'State',
-            'created_at': myDate.isoformat(),
-            'updated_at': myDate.isoformat(),
+            'created_at': mdt.isoformat(),
+            'updated_at': mdt.isoformat(),
         }
         self.assertDictEqual(ste.to_dict(), tdict)
 
